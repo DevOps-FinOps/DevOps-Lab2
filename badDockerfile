@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile:1
+
+ARG PYTHON_VERSION=3.11.0rc1
+FROM python:${PYTHON_VERSION}-slim as base
+
+ENV PYTHONDONTWRITEBYTECODE=1
+
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# 1. Излишнее количество вызовов команды RUN
+RUN --mount=type=cache,target=/root/.cache/pip
+RUN --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
+
+# 2. Запуск от root-пользователя, а не от отдельно созданного пользователя
+USER root
+
+COPY . .
+
+# 3. Неиспользуемый порт
+EXPOSE 1234
+
+EXPOSE 5000
+
+CMD python3.11 -m flask run --host=0.0.0.0
