@@ -29,6 +29,6 @@
 ![imgs/container_badpractice1.png](imgs/container_badpractice1.png)<br>
 Запуск контейнера без значимого имени.<br>
 ![imgs/container_badpractice2.png](imgs/container_badpractice2.png)<br>
-Запуск контейнера с помощью root пользователя создают угрозу безопасности.<br>
+Запуск контейнера с помощью root пользователя - угроза безопасности.<br>
 
 
