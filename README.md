@@ -25,5 +25,10 @@
 этого Dockerfile.<br>
 ![imgs/badpractice3-fixed.png](imgs/badpractice3-fixed.png)<br>
 Избавляемся от бесцельных команд.<br>
+# Плохие практики при использовании контейнера
+![imgs/container_badpractice1.png](imgs/container_badpractice1.png)<br>
+Запуск контейнера без значимого имени.<br>
+![imgs/container_badpractice2.png](imgs/container_badpractice2.png)<br>
+Запуск контейнера с помощью root пользователя создают угрозу безопасности.<br>
 
 
