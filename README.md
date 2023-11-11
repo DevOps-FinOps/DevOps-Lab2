@@ -1,4 +1,4 @@
-# Плохие практики
+﻿# Плохие практики
 ![imgs/badpractice1.png](imgs/badpractice1.png)<br>
 Команду RUN можно было вызвать один раз, добавив "\ " в конце первой строки.
 Это замедляет сборку образа и увеличивает его размер.<br>
@@ -28,7 +28,7 @@
 # Плохие практики при использовании контейнера
 ![imgs/container_badpractice1.png](imgs/container_badpractice1.png)<br>
 Запуск контейнера без значимого имени.<br>
-![imgs/container_badpractice2.png](imgs/container_badpractice2.png)<br>
-Запуск контейнера с помощью root пользователя - угроза безопасности.<br>
+![imgs/container_badpractice3.png](imgs/container_badpractice3.png)<br>
+Оставление ненужных контейнеров включёнными – трата ресурсов ПК.<br>
 
 
