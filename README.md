@@ -28,7 +28,7 @@
 # Плохие практики при использовании контейнера
 ![imgs/container_badpractice1.png](imgs/container_badpractice1.png)<br>
 Запуск контейнера без значимого имени.<br>
-![imgs/container_badpractice3.png](imgs/container_badpractice3.png)<br>
+![imgs/container-badpractice3.png](imgs/container-badpractice3.png)<br>
 Оставление ненужных контейнеров включёнными – трата ресурсов ПК.<br>
 
 
