@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab-02-deployment
+  labels:
+    app: k8s-python-web
+    owner: GlebBurov
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: lab-02
+  template:
+    metadata:
+      labels:
+        project: lab-02
+    spec:
+      containers:
+        - name: python-web
+          image: leandoer69/k8spython:latest
+          ports:
+            - containerPort: 5000
