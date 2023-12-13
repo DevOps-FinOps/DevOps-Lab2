@@ -35,41 +35,41 @@
 Во втором задании нужно было поднять кластер Kubernetes, запустить наш контейнер в нём, при этом всё описано кодом. Само собой, должны быть deployment и service, а приложение, работающее внутри контейнера должно открываться локально на моем браузере. Приступаем.
 
 ## Поднимаем кластер
-Поднимем мы его с помощью minicube, а в качестве драйвера будем использовать virtualbox. Ниже на рисунке показан запуск кластера с помощью команды `minikube start`.
-![imgs/minikube_start.png](imgs/minikube_start.png)
+Поднимем мы его с помощью minicube, а в качестве драйвера будем использовать virtualbox. Ниже на рисунке показан запуск кластера с помощью команды `minikube start`.<br>
+![imgs/minikube_start.png](imgs/minikube_start.png)<br>
 
-Проверяем работоспособность нашего кластера с помощью `kubectl get componentstatuses`. Также можно заглянуть в VirtualBox и увидеть, что наш кластер работает.
-![imgs/minikube_check.png](imgs/minikube_check.png)
+Проверяем работоспособность нашего кластера с помощью `kubectl get componentstatuses`. Также можно заглянуть в VirtualBox и увидеть, что наш кластер работает.<br>
+![imgs/minikube_check.png](imgs/minikube_check.png)<br>
 
 ## Загружаем образ в репозиторий
 Кластер подняли, теперь пора загрузить образ, полученный из нашего докер файла (во всех дальнейших примерах будет использоваться "хороший" докер файл, для плохого файла все шаги те же). 
-Для начала давайте получим образ из нашего файла с помощью команды `docker build`. В качестве тега установим myk8sapp.
-![imgs/docker_build.png](imgs/docker_build.png)
+Для начала давайте получим образ из нашего файла с помощью команды `docker build`. В качестве тега установим myk8sapp.<br>
+![imgs/docker_build.png](imgs/docker_build.png)<br>
 
-В качестве репозитория будем использовать всеми любимый Docker Hub, необходимо залогинниться в него, предварительно создав публичный репозиторий. 
-![imgs/docker_login.png](imgs/docker_login.png)
+В качестве репозитория будем использовать всеми любимый Docker Hub, необходимо залогинниться в него, предварительно создав публичный репозиторий. <br>
+![imgs/docker_login.png](imgs/docker_login.png)<br>
 
-Самое время запушить наш образ в созданный репозиторий с помощью команды `docker push`.
-![imgs/docker_push.png](imgs/docker_push.png)
+Самое время запушить наш образ в созданный репозиторий с помощью команды `docker push`.<br>
+![imgs/docker_push.png](imgs/docker_push.png)<br>
 
 Готово! Теперь наш образ можно загрузить из репозитория с помощью `docker pull`.
 
 ## Описываем deployment и service 
 
-Начнём с деплоймента. Для начала создадим файлик deployment.yaml, где опишем всю конфигурацию. Содержимое файлика представлено на скриншоте.
-![imgs/deployment.png](imgs/deployment.png)
+Начнём с деплоймента. Для начала создадим файлик deployment.yaml, где опишем всю конфигурацию. Содержимое файлика представлено на скриншоте.<br>
+![imgs/deployment.png](imgs/deployment.png)<br>
 
-Из интересного в нём: будет создаваться три пода (поле replicas), в которых будут запущены контейнеры с нашим образом, открыт 5000 порт. Запустим наш deployment в кластере с помощью команды `kubectl apply`.
-![imgs/kuber_apply_deploy.png](imgs/kuber_apply_deploy.png)
+Из интересного в нём: будет создаваться три пода (поле replicas), в которых будут запущены контейнеры с нашим образом, открыт 5000 порт. Запустим наш deployment в кластере с помощью команды `kubectl apply`.<br>
+![imgs/kuber_apply_deploy.png](imgs/kuber_apply_deploy.png)<br>
 Как мы можем убедиться, наши три пода бегут, а значит всё замечательно.
 
 
-Поступим аналогично и с нашим сервисом. Создаем service.yaml:
-![imgs/service.png](imgs/service.png)
+Поступим аналогично и с нашим сервисом. Создаем service.yaml:<br>
+![imgs/service.png](imgs/service.png)<br>
 
 Наш сервис будет типа NodePort, чтобы все ноды были доступны на одном порте. Порт открыт 5000.
-С помощью того же `kubectl apply` запускаем наш сервер и проверяем, всё ли в порядке: 
-![imgs/check_service.png](imgs/check_service.png)
+С помощью того же `kubectl apply` запускаем наш сервер и проверяем, всё ли в порядке: <br>
+![imgs/check_service.png](imgs/check_service.png)<br>
 
 Воу, все работает! Получим URL у нашего сервиса с помощью `minikube service <service_name> --url`:
 ![imgs/minikube_url.png](imgs/minikube_url.png)
